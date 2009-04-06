@@ -1,0 +1,29 @@
+
+escape ^z^z
+shell /bin/zsh
+
+defutf8 on
+defkanji utf8
+encoding utf8
+defencoding utf8
+
+startup_message off
+autodetach on
+vbell off
+defscrollback 3000
+hardstatus alwayslastline "%`%-w%{=b cw}%n %t%{-}%+w"
+
+markkeys $=^e
+
+bind ^e encoding euc
+bind ^u encoding utf8
+
+bindkey ^f next
+bindkey ^b prev
+bindkey ^w^w focus
+
+# -------------------------------
+#  Tips
+# -------------------------------
+# ^Z + [ でコピーモード
+# スペースでコピーして、 ^Z + ] で貼り付け
