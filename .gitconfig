@@ -29,12 +29,24 @@ whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 autosetupmerge = true
 
 [alias]
-st = status
-ci = commit -a
-br = branch
-co = checkout
+ci = commit -v
+cat = cat-file -p
 di = diff
-log = log -p
+dh = diff HEAD
+dc = diff --cached
+lo = log
+lp = log -p
+lg = log --graph --pretty=format:\"%Cgreen%h %cd %Cblue%cn %Creset%s\"
+re = reset
+co = checkout
+ch = checkout HEAD
+rv = revert
+ad = add
+au = add -u
+ap = add -p
+st = status
+br = branch
+rm = rm --cached -f
 
 [user]
 name = sasata299
