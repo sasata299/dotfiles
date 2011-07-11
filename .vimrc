@@ -1,14 +1,19 @@
+source $VIMRUNTIME/macros/matchit.vim
 
 " vi互換OFF(vimの独自拡張機能も使うため)
 set nocompatible
+filetype off
 
-"set ambiwidth=double
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
 
-let g:github_user  = "sasata299"
-let g:github_token = "xxxxxxxxx"
-
-let twitvim_login = "sasata299:xxxxxxxxx"
-let twitvim_count = 100
+"Bundle 'thinca/vim-quickrun'
+Bundle 'rails.vim'
+Bundle 'surround.vim'
+Bundle 'AutoComplPop'
+Bundle 'snippetsEmu'
+Bundle 'ZenCoding.vim'
+Bundle 'tpope/vim-fugitive'
 
 syntax on
 filetype plugin indent on
@@ -33,10 +38,9 @@ set ignorecase
 set smartcase
 set wildmenu
 set hidden
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=0
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=0
 set smartindent
 set history=50
 set backspace=indent,eol,start
@@ -54,7 +58,7 @@ augroup SkeletonAu
     autocmd BufNewFile *.pl 0r $HOME/.vim/template/skel.pl
     autocmd BufNewFile *.PL 0r $HOME/.vim/template/skel.PL
     autocmd BufNewFile *.t 0r $HOME/.vim/template/skel.t
-    autocmd BufNewFile *.html 0r $HOME/.vim/template/skel.html
+"    autocmd BufNewFile *.html 0r $HOME/.vim/template/skel.html
 augroup END
 
 " for Java
@@ -66,7 +70,7 @@ let java_allow_cpp_keywords=1
 autocmd FileType perl :set dictionary=/usr/share/vim/vim72/syntax/perl.vim
 autocmd FileType ruby :set dictionary=/usr/share/vim/vim72/syntax/ruby.vim
 autocmd FileType java :set dictionary=/usr/share/vim/vim72/syntax/java.vim
-autocmd FileType html :set dictionary=/usr/share/vim/vim72/syntax/html.vim
+"autocmd FileType html :set dictionary=/usr/share/vim/vim72/syntax/html.vim
 autocmd FileType javascript :set dictionary=/usr/share/vim/vim71/syntax/javascript.vim
 highlight Pmenu ctermbg=8 ctermfg=6
 highlight PmenuSel ctermbg=4 ctermfg=2
@@ -74,7 +78,6 @@ highlight PmenuSbar ctermbg=4
 "highlight Pmenu ctermbg=7 ctermfg=7
 "highlight PmenuSel ctermbg=2 ctermfg=7
 "highlight PmenuSbar ctermbg=2
-
 
 " rails.vim の設定
 let g:rails_level=4
@@ -100,7 +103,7 @@ set statusline=%<%f\%=\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[line:%
 hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=red
 
 autocmd FileType xml  imap <BUFFER> << </<C-x><C-o>
-autocmd FileType html imap <BUFFER> << </<C-x><C-o>
+"autocmd FileType html imap <BUFFER> << </<C-x><C-o>
 autocmd FileType perl :map <C-n> <ESC>:!perl -cw %<CR>
 autocmd FileType perl :map <C-e> <ESC>:!perl %<CR>
 autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
@@ -125,7 +128,6 @@ nmap U <C-r>
 nmap T dt
 nmap t ct
 nmap tt yiw
-nmap O :<C-u>call append(expand('.'), '')<CR>j
 nmap <space>, :<C-u>edit $MYVIMRC<CR>
 nmap <C-p> q:k<CR>
 nmap Y y$
@@ -150,6 +152,42 @@ imap { {}<LEFT>
 imap [ []<LEFT>
 imap ( ()<LEFT>
 imap <C-l> <RIGHT>
+
+" tab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set smarttab
+imap <C-Tab> <C-V><Tab>
+
+" for Fugitive
+nnoremap gd :<C-u>Gdiff<Enter>
+nnoremap gs :<C-u>Gstatus<Enter>
+nnoremap gl :<C-u>Glog<Enter>
+nnoremap ga :<C-u>Gwrite<Enter>
+nnoremap gc :<C-u>Gcommit<Enter>
+nnoremap gC :<C-u>Git commit --amend<Enter>
+nnoremap gb :<C-u>Gblame<Enter>
+
+" pattern match
+syntax match MainTitle   '^\*\*\*\*[^\*]*$'
+syntax match HeadLine    '^\*\*\*[^\*]*$'
+syntax match SubTitle    '^\*\*[^]*]*$'
+syntax match SubSubTitle '^\*[^\*]*$'
+syntax match Code        '^#code'
+syntax match Chart       '^#chart'
+syntax match Figure      '^#figure'
+syntax match Code        '^TODO: '
+
+" highlight link
+highlight link MainTitle   ErrorMsg
+highlight link HeadLine    LineNr
+highlight link SubTitle    Title
+highlight link SubSubTitle NonText
+highlight link Code        Search
+highlight link Chart       DiffAdd
+highlight link Figure      DiffAdd
 
 
 " -------------------------------
