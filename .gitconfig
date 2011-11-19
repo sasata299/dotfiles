@@ -24,6 +24,7 @@ ui = true
 
 [core]
 whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+editor = /usr/bin/vim
 
 [branch]
 autosetupmerge = true
