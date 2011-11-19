@@ -34,19 +34,19 @@ cat = cat-file -p
 di = diff
 dh = diff HEAD
 dc = diff --cached
-lo = log
-lp = log -p
+lo = log --stat
+lp = log -p --stat
 lg = log --graph --pretty=format:\"%Cgreen%h %cd %Cblue%cn %Creset%s\"
-re = reset
+re = reset --soft HEAD^
 co = checkout
 ch = checkout HEAD
 rv = revert
 ad = add
-au = add -u
-ap = add -p
 st = status
-br = branch
+b = branch
+su = submodule update -i
 rm = rm --cached -f
+pull = pull --rebase
 
 [user]
 name = sasata299
