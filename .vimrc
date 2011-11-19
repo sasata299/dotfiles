@@ -10,13 +10,22 @@ call vundle#rc()
 "Bundle 'thinca/vim-quickrun'
 Bundle 'rails.vim'
 Bundle 'surround.vim'
-Bundle 'AutoComplPop'
+Bundle 'neocomplcache'
 Bundle 'snippetsEmu'
 Bundle 'ZenCoding.vim'
 Bundle 'tpope/vim-fugitive'
 
 syntax on
 filetype plugin indent on
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+"let g:neocomplcache_min_syntax_length = 3
+highlight Pmenu ctermbg=8 ctermfg=6
+highlight PmenuSel ctermbg=4 ctermfg=2
+highlight PmenuSbar ctermbg=4
 
 " # の行で改行したときなどに # をつけないように
 autocmd FileType * setlocal formatoptions-=r
@@ -65,19 +74,6 @@ augroup END
 let java_highlight_all=1
 let java_highlight_function="style"
 let java_allow_cpp_keywords=1
-
-" autocomplpop.vim の設定
-autocmd FileType perl :set dictionary=/usr/share/vim/vim72/syntax/perl.vim
-autocmd FileType ruby :set dictionary=/usr/share/vim/vim72/syntax/ruby.vim
-autocmd FileType java :set dictionary=/usr/share/vim/vim72/syntax/java.vim
-"autocmd FileType html :set dictionary=/usr/share/vim/vim72/syntax/html.vim
-autocmd FileType javascript :set dictionary=/usr/share/vim/vim71/syntax/javascript.vim
-highlight Pmenu ctermbg=8 ctermfg=6
-highlight PmenuSel ctermbg=4 ctermfg=2
-highlight PmenuSbar ctermbg=4
-"highlight Pmenu ctermbg=7 ctermfg=7
-"highlight PmenuSel ctermbg=2 ctermfg=7
-"highlight PmenuSbar ctermbg=2
 
 " rails.vim の設定
 let g:rails_level=4
