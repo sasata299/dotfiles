@@ -13,16 +13,14 @@ RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
 export MYSQL_PS1="${fg[red]}\u \h:\p >${fg[white]} "
 
 export LANG=ja_JP.UTF-8
-# 必ず /usr が /opt よりも先に読み込まれるようにする必要あり
-# あと、$PATH を先に持ってくると ls の alias がおかしくなっちゃうので駄目。
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export DISPLAY=:0.0
 export SVN_EDITOR=vim
 #export JAVA_HOME=/usr/local/java
 #export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lig/dt.jar
 #export GREP_COLOR='01;33'
-#export GREP_OPTIONS='--color=auto'
-export GREP_OPTIONS='-Ir --color=auto --exclude-dir=\.svn'
+export GREP_OPTIONS='--color=auto'
+#export GREP_OPTIONS='-Ir --color=auto --exclude-dir=\.svn'
 export RSPEC=true
 export CLICOLOR=1
 #export LS_COLORS="no=00;31:fi=00;37:di=00;36:ln=00;31:ex=00;31"
@@ -36,7 +34,7 @@ alias mv="mv -iv"
 alias rm=" rm -iv"
 alias vi=vim
 #alias e="/Applications/Emacs.app/Contents/MacOS/Emacs"
-alias rails="rails -d mysql"
+#alias rails="rails -d mysql"
 alias ack="ack --group --color"
 alias c=clear
 alias s=screen
@@ -112,12 +110,12 @@ setopt mark_dirs
 setopt auto_param_slash
 
 # sudo でも補完を使いたい
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin 
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
 # screen で最後に実行したコマンドをタブ名に
 preexec () {
     if [ $TERM = "screen" ]; then
-    	1="$1 " 
+    	1="$1 "
         echo -ne "\ek${${(s: :)1}[0]}\e\\"
     fi
 }
@@ -130,10 +128,10 @@ unsetopt promptcr
 
 
 # gitのブランチ名をPROMPTに表示する
-precmd() { 
+precmd() {
     _update_rprompt;
 }
-chpwd() { 
+chpwd() {
     _update_rprompt;
     ls;
 }
@@ -145,7 +143,7 @@ _update_rprompt () {
     else
         RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
     fi
-} 
+}
 
 
 # --------------------------
