@@ -9,6 +9,9 @@ colors
 PROMPT="%{${fg[green]}%}[%n@%m] %(!.#.$) %{${reset_color}%}"
 RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
 
+# MySQLのプロンプト
+export MYSQL_PS1="${fg[red]}\u \h:\p >${fg[white]} "
+
 export LANG=ja_JP.UTF-8
 # 必ず /usr が /opt よりも先に読み込まれるようにする必要あり
 # あと、$PATH を先に持ってくると ls の alias がおかしくなっちゃうので駄目。
