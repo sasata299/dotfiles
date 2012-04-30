@@ -100,11 +100,13 @@ hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=red
 
 autocmd FileType xml  imap <BUFFER> << </<C-x><C-o>
 "autocmd FileType html imap <BUFFER> << </<C-x><C-o>
+autocmd FileType html setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
 autocmd FileType perl :map <C-n> <ESC>:!perl -cw %<CR>
 autocmd FileType perl :map <C-e> <ESC>:!perl %<CR>
 autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
 autocmd FileType ruby :map <C-e> <ESC>:!ruby %<CR>
-autocmd FileType ruby setlocal ts=2 sw=2 sts=0 
+autocmd FileType ruby :map <C-t> <ESC>:!bundle exec rake spec SPEC=%:p<CR>
+autocmd FileType ruby setlocal ts=2 sw=2 sts=0
 
 " 画面分割したときに、サイズを自動調整
 nmap <C-w>w <C-w>w:call <SID>good_width()<CR>
@@ -135,7 +137,7 @@ vmap ; :
 
 " 選択範囲のみ検索
 vmap / /\%V
-vmap ? ?\%V 
+vmap ? ?\%V
 
 " command mode
 cmap qq q!
@@ -185,14 +187,30 @@ highlight link Code        Search
 highlight link Chart       DiffAdd
 highlight link Figure      DiffAdd
 
-autocmd WinEnter * call s:highlight_general_checkstyles()
-function! s:highlight_general_checkstyles()
-  let w:m1=matchadd('WideSpace', '　', -1)
-  let w:m2=matchadd('EOLSpace', '\s\+$', -1)
-  let w:m3=matchadd('WideEisuu', '[Ａ-Ｚａ-ｚ０-９]', -1)
-  let w:m4=matchadd('SpaceAndComma', ' ,', -1)
-  let w:m5=matchadd('CommaAndNonSpace', ',[^(\\n| )]', -1)
-endf
+function StripTrailingWhitespaces()
+  let pos = getpos(".")
+  %s/\s\+$//e
+  call setpos(".", pos)
+endfunction
+autocmd BufWritePre * :call StripTrailingWhitespaces()
+
+function! RunSpec()
+  let file_path = expand("%:p")
+  let line_number = line(".")
+  let base_path = "$HOME/.rvm/rubies/ree-1.8.7-2011.03/bin/"
+  let gems_path = "$HOME/.rvm/gems/ree-1.8.7-2011.03/bin/"
+  let rake_path = "$HOME/.rvm/gems/ree-1.8.7-2011.03/bin/rake"
+
+  execute  ":! " . gems_path . "bundle exec " . rake_path ." spec SPEC='" . file_path . "'" . " SPEC_OPTS='-l " . line_number . "'"
+
+  unlet file_path
+  unlet line_number
+  unlet base_path
+  unlet gems_path
+  unlet rake_path
+endfunction
+
+nmap gws :call RunSpec()<CR>
 
 
 " -------------------------------

@@ -47,7 +47,6 @@ st = status
 b = branch
 su = submodule update -i
 rm = rm --cached -f
-pull = pull --rebase
 
 [user]
 name = sasata299

@@ -16,6 +16,7 @@ export LANG=ja_JP.UTF-8
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export DISPLAY=:0.0
 export SVN_EDITOR=vim
+export EDITOR=vim
 #export JAVA_HOME=/usr/local/java
 #export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lig/dt.jar
 #export GREP_COLOR='01;33'

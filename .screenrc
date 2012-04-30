@@ -21,6 +21,7 @@ bind ^u encoding utf8
 bindkey ^f next
 bindkey ^b prev
 bindkey ^w^w focus
+bindkey ^s split
 
 # -------------------------------
 #  Tips
