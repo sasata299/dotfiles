@@ -1,3 +1,4 @@
+eval "$(rbenv init -)"
 
 # Ctrl+w で､直前の / までを削除する
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
@@ -46,6 +47,7 @@ alias df='df -h'
 alias ps='ps aux'
 alias diff='diff -u'
 #alias top='top -c'
+alias fs='foreman start'
 alias top='top -RFXu'
 alias prove='prove -v -r --lib --timer'
 alias re=refe
