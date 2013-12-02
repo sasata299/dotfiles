@@ -1,3 +1,4 @@
+eval "$(rbenv init -)"
 
 # Ctrl+w で､直前の / までを削除する
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
@@ -16,7 +17,8 @@ export LANG=ja_JP.UTF-8
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export DISPLAY=:0.0
 export SVN_EDITOR=vim
-export EDITOR=vim
+export BUNDLE_EDITOR=vim
+#export EDITOR=vim
 #export JAVA_HOME=/usr/local/java
 #export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lig/dt.jar
 #export GREP_COLOR='01;33'
@@ -41,11 +43,12 @@ alias c=clear
 alias s=screen
 alias ll="ls -hl"
 #alias ll="ls -hl -v --color"
-alias du='du -s -h'
+#alias du='du -s -h'
 alias df='df -h'
 alias ps='ps aux'
 alias diff='diff -u'
 #alias top='top -c'
+alias fs='foreman start'
 alias top='top -RFXu'
 alias prove='prove -v -r --lib --timer'
 alias re=refe
