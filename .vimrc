@@ -14,6 +14,9 @@ Bundle 'neocomplcache'
 Bundle 'snippetsEmu'
 Bundle 'ZenCoding.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'claco/jasmine.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 syntax on
 filetype plugin indent on
@@ -107,6 +110,20 @@ autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
 autocmd FileType ruby :map <C-e> <ESC>:!ruby %<CR>
 autocmd FileType ruby :map <C-t> <ESC>:!bundle exec rake spec SPEC=%:p<CR>
 autocmd FileType ruby setlocal ts=2 sw=2 sts=0
+
+" jBuilder
+au BufNewFile,BufRead *.jbuilder set filetype=ruby
+
+" CoffeeScript
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_color_change_percent=20
+let g:indent_guides_guide_size=1
+let g:indent_guides_space_guides=1
 
 " 画面分割したときに、サイズを自動調整
 nmap <C-w>w <C-w>w:call <SID>good_width()<CR>
