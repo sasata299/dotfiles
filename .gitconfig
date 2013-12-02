@@ -32,7 +32,7 @@ autosetupmerge = true
 [alias]
 ci = commit -v
 cat = cat-file -p
-di = diff
+di = diff --patience
 dh = diff HEAD
 dc = diff --cached
 lo = log --stat
