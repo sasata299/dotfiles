@@ -11,7 +11,7 @@ PROMPT="%{${fg[green]}%}[%n@%m] %(!.#.$) %{${reset_color}%}"
 RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
 
 # MySQLのプロンプト
-export MYSQL_PS1="${fg[red]}\u \h:\p >${fg[white]} "
+export MYSQL_PS1='\u \h:\p > '
 
 export LANG=ja_JP.UTF-8
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
