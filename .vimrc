@@ -17,6 +17,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'claco/jasmine.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'slim-template/vim-slim'
 
 syntax on
 filetype plugin indent on
