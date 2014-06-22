@@ -70,6 +70,10 @@ alias commitlist="svn st | awk '\$1 == \"M\" {print \$2}' | ruby -lne 'BEGIN { \
 # -R は読み込み専用。- は標準出力からの読み込み
 alias -g V="| vi -R -"
 
+#hub
+alias hb="hub browse"
+alias hp="hub pull-request"
+
 setopt no_flow_control
 setopt complete_aliases
 
