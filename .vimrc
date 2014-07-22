@@ -7,17 +7,18 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-"Bundle 'thinca/vim-quickrun'
 Bundle 'rails.vim'
-Bundle 'surround.vim'
 Bundle 'neocomplcache'
-Bundle 'snippetsEmu'
-Bundle 'ZenCoding.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'claco/jasmine.vim'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'slim-template/vim-slim'
+"Bundle 'thinca/vim-quickrun'
+"Bundle 'surround.vim'
+"Bundle 'snippetsEmu'
+"Bundle 'ZenCoding.vim'
+"Bundle 'claco/jasmine.vim'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'altercation/vim-colors-solarized'
+"Bundle 'slim-template/vim-slim'
 
 syntax on
 filetype plugin indent on
