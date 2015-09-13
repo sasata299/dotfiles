@@ -7,12 +7,16 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
+set clipboard=unnamed
+Bundle 'kana/vim-fakeclip'
+
 Bundle 'rails.vim'
 Bundle 'neocomplcache'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'surround.vim'
+Bundle 'fatih/vim-go'
 "Bundle 'thinca/vim-quickrun'
-"Bundle 'surround.vim'
 "Bundle 'snippetsEmu'
 "Bundle 'ZenCoding.vim'
 "Bundle 'claco/jasmine.vim'
@@ -188,14 +192,15 @@ nnoremap gC :<C-u>Git commit --amend<Enter>
 nnoremap gb :<C-u>Gblame<Enter>
 
 " pattern match
-syntax match MainTitle   '^\*\*\*\*[^\*]*$'
-syntax match HeadLine    '^\*\*\*[^\*]*$'
-syntax match SubTitle    '^\*\*[^]*]*$'
-syntax match SubSubTitle '^\*[^\*]*$'
-syntax match Code        '^#code'
-syntax match Chart       '^#chart'
-syntax match Figure      '^#figure'
-syntax match Code        '^TODO: '
+syntax match MainTitle   '^#[^\#]*$'
+syntax match HeadLine    '^##[^\#]*$'
+syntax match SubTitle    '^###[^\#]*$'
+syntax match Code        '^!!!command'
+syntax match Code        '^!!!code'
+syntax match Chart       '^!!!表.*$'
+syntax match Figure      '^!!!図.*$'
+syntax match Figure      '^!!!キャプチャ.*$'
+syntax match Code        '^!!!TODO: '
 
 " highlight link
 highlight link MainTitle   ErrorMsg
