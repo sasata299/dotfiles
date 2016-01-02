@@ -1,4 +1,5 @@
 eval "$(rbenv init -)"
+# eval "$(phpenv init -)"
 
 # Ctrl+w で､直前の / までを削除する
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
@@ -10,11 +11,17 @@ colors
 PROMPT="%{${fg[green]}%}[%n@%m] %(!.#.$) %{${reset_color}%}"
 RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
 
+if [ -x "`which go`" ]; then
+  export GOROOT=`go env GOROOT`
+  export GOPATH=$HOME/.go
+  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
+
 # MySQLのプロンプト
 export MYSQL_PS1='\u \h:\p > '
 
 export LANG=ja_JP.UTF-8
-export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:~/bin:~/.nodebrew/current/bin:~/.phpenv/bin:$PATH
 export DISPLAY=:0.0
 export SVN_EDITOR=vim
 export BUNDLE_EDITOR=vim
@@ -153,6 +160,24 @@ _update_rprompt () {
     fi
 }
 
+# peco + branch
+alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
+
+# peco + history
+function peco-select-history() {
+    typeset tac
+    if which tac > /dev/null; then
+        tac=tac
+    else
+        tac='tail -r'
+    fi
+    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
 
 # --------------------------
 #  Tips
@@ -164,4 +189,8 @@ _update_rprompt () {
 # rm **/*.swp で *.swp ファイルを再帰的に削除できる
 # rm a* で Tab を押すと、a1 a2 a3 などに展開される
 # repeat n echo hoge で echo hoge を n 回繰り返す
+
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 
