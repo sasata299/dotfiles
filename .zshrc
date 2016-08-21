@@ -8,7 +8,7 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 setopt prompt_subst
 autoload colors
 colors
-PROMPT="%{${fg[green]}%}[%n@%m] %(!.#.$) %{${reset_color}%}"
+PROMPT="%{${fg[green]}%}%(!.#.$) %{${reset_color}%}"
 RPROMPT="%{${fg[green]}%}[%~]%{${reset_color}%}"
 
 if [ -x "`which go`" ]; then
@@ -21,7 +21,7 @@ fi
 export MYSQL_PS1='\u \h:\p > '
 
 export LANG=ja_JP.UTF-8
-export PATH=/usr/local/sbin:/usr/local/bin:~/bin:~/.nodebrew/current/bin:~/.phpenv/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 export DISPLAY=:0.0
 export SVN_EDITOR=vim
 export BUNDLE_EDITOR=vim
@@ -138,10 +138,6 @@ preexec () {
 # 改行のない文字列でも出力する
 unsetopt promptcr
 
-# .zshrc.mine があればそれも読み込む
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
-
-
 # gitのブランチ名をPROMPTに表示する
 precmd() {
     _update_rprompt;
@@ -163,20 +159,8 @@ _update_rprompt () {
 # peco + branch
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 
-# peco + history
-function peco-select-history() {
-    typeset tac
-    if which tac > /dev/null; then
-        tac=tac
-    else
-        tac='tail -r'
-    fi
-    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle redisplay
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
+# .zshrc.mine があればそれも読み込む
+[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
 
 # --------------------------
@@ -189,8 +173,3 @@ bindkey '^r' peco-select-history
 # rm **/*.swp で *.swp ファイルを再帰的に削除できる
 # rm a* で Tab を押すと、a1 a2 a3 などに展開される
 # repeat n echo hoge で echo hoge を n 回繰り返す
-
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
