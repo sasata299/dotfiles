@@ -1,31 +1,19 @@
-source $VIMRUNTIME/macros/matchit.vim
-
 " vi互換OFF(vimの独自拡張機能も使うため)
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-
-set clipboard=unnamed
-Bundle 'kana/vim-fakeclip'
-
-Bundle 'rails.vim'
-Bundle 'neocomplcache'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'surround.vim'
-Bundle 'fatih/vim-go'
-"Bundle 'thinca/vim-quickrun'
-"Bundle 'snippetsEmu'
-"Bundle 'ZenCoding.vim'
-"Bundle 'claco/jasmine.vim'
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'altercation/vim-colors-solarized'
-"Bundle 'slim-template/vim-slim'
-
-syntax on
 filetype plugin indent on
+
+" https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'Shougo/neocomplcache'
+Plug 'tpope/vim-surround'
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
+
+" vimをsolarizedにする
+syntax enable
+set background=dark
+colorscheme solarized
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
@@ -71,19 +59,6 @@ let g:loaded_matchparen = 1
 " 編集中のファイルのファイル名を変更
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
-augroup SkeletonAu
-    autocmd!
-    autocmd BufNewFile *.pl 0r $HOME/.vim/template/skel.pl
-    autocmd BufNewFile *.PL 0r $HOME/.vim/template/skel.PL
-    autocmd BufNewFile *.t 0r $HOME/.vim/template/skel.t
-"    autocmd BufNewFile *.html 0r $HOME/.vim/template/skel.html
-augroup END
-
-" for Java
-let java_highlight_all=1
-let java_highlight_function="style"
-let java_allow_cpp_keywords=1
-
 " rails.vim の設定
 let g:rails_level=4
 let g:rails_default_file="app/controllers/application.rb"
@@ -92,13 +67,6 @@ let g:rails_default_database="mysql"
 " surround.vim の設定
 let g:surround_103 = "('\r')"  " 103 = g
 let g:surround_71 = "(\"\r\")" " 71 = G
-
-" 括弧を挿入する
-nmap gs cs'g
-nmap gd cs"G
-
-nmap qds cs"'
-nmap qsd cs'"
 
 " ステータスラインの設定
 set encoding=utf8
@@ -182,15 +150,6 @@ set expandtab
 set smarttab
 imap <C-Tab> <C-V><Tab>
 
-" for Fugitive
-nnoremap gd :<C-u>Gdiff<Enter>
-nnoremap gs :<C-u>Gstatus<Enter>
-nnoremap gl :<C-u>Glog<Enter>
-nnoremap ga :<C-u>Gwrite<Enter>
-nnoremap gc :<C-u>Gcommit<Enter>
-nnoremap gC :<C-u>Git commit --amend<Enter>
-nnoremap gb :<C-u>Gblame<Enter>
-
 " pattern match
 syntax match MainTitle   '^#[^\#]*$'
 syntax match HeadLine    '^##[^\#]*$'
@@ -217,25 +176,6 @@ function StripTrailingWhitespaces()
   call setpos(".", pos)
 endfunction
 autocmd BufWritePre * :call StripTrailingWhitespaces()
-
-function! RunSpec()
-  let file_path = expand("%:p")
-  let line_number = line(".")
-  let base_path = "$HOME/.rvm/rubies/ree-1.8.7-2011.03/bin/"
-  let gems_path = "$HOME/.rvm/gems/ree-1.8.7-2011.03/bin/"
-  let rake_path = "$HOME/.rvm/gems/ree-1.8.7-2011.03/bin/rake"
-
-  execute  ":! " . gems_path . "bundle exec " . rake_path ." spec SPEC='" . file_path . "'" . " SPEC_OPTS='-l " . line_number . "'"
-
-  unlet file_path
-  unlet line_number
-  unlet base_path
-  unlet gems_path
-  unlet rake_path
-endfunction
-
-nmap gws :call RunSpec()<CR>
-
 
 " -------------------------------
 "  Tips
