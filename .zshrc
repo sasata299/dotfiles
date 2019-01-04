@@ -134,6 +134,7 @@ _update_rprompt () {
 
 # peco + branch
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
+alias -g R='`git branch -a | peco | sed -e "s/^\*[ ]*//g"`'
 
 # .zshrc.mine があればそれも読み込む
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
