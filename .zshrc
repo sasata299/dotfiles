@@ -22,39 +22,26 @@ export MYSQL_PS1='\u \h:\p > '
 
 export LANG=ja_JP.UTF-8
 export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 export DISPLAY=:0.0
-export SVN_EDITOR=vim
-export BUNDLE_EDITOR=vim
-#export EDITOR=vim
-#export JAVA_HOME=/usr/local/java
-#export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lig/dt.jar
-#export GREP_COLOR='01;33'
+export EDITOR=vim
 export GREP_OPTIONS='--color=auto'
-#export GREP_OPTIONS='-Ir --color=auto --exclude-dir=\.svn'
-export RSPEC=true
 export CLICOLOR=1
-#export LS_COLORS="no=00;31:fi=00;37:di=00;36:ln=00;31:ex=00;31"
 export LSCOLORS=gxfxcxdxbxegedabagacad
-
-# これを設定しとけば、デフォルトでこのsocketを使うようになる
-#export MYSQL_UNIX_PORT=/usr/local/mysql/mysql.sock
 
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm=" rm -iv"
 alias vi=vim
-#alias e="/Applications/Emacs.app/Contents/MacOS/Emacs"
-#alias rails="rails -d mysql"
+alias gi=git
 alias ack="ack --group --color"
 alias c=clear
 alias s=screen
 alias ll="ls -hl"
-#alias ll="ls -hl -v --color"
 #alias du='du -s -h'
 alias df='df -h'
 alias ps='ps aux'
 alias diff='diff -u'
-#alias top='top -c'
 alias fs='foreman start'
 alias top='top -RFXu'
 alias prove='prove -v -r --lib --timer'
@@ -62,24 +49,13 @@ alias re=refe
 alias spec='spec -cfs'
 alias ctags="ctags -f ~/.tags -R"
 alias ucode="vim `perl -le 'print grep { -f } map { "$_/unicore/Blocks.txt" } @INC'`"
-alias cpan-list="perl -MExtUtils::Installed -le 'print join \"\n\", sort ExtUtils::Installed->new->modules;'"
-alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=shift)=~s{-}{/}g;uninstall "$Config{sitearchexp}/auto/$FULLEXT/.packlist",1'"'"
-alias cpan-history="perldoc -tT perllocal"
 alias ngrep="ngrep -W byline"
-alias gi=git
-alias ss='./script/server'
 alias -g A="| lv -c"
 alias -g L="| less"
 alias -g G="| grep -E"
-alias commitlist="svn st | awk '\$1 == \"M\" {print \$2}' | ruby -lne 'BEGIN { \$hoge = [] }; \$hoge << \$_; END { puts \$hoge.join(\" \") }'"
-#alias commitlist="svn st | awk '\$1 == \"M\" {print \$2}'"
 
 # -R は読み込み専用。- は標準出力からの読み込み
 alias -g V="| vi -R -"
-
-#hub
-alias hb="hub browse"
-alias hp="hub pull-request"
 
 setopt no_flow_control
 setopt complete_aliases
