@@ -1,6 +1,9 @@
 eval "$(rbenv init -)"
 # eval "$(phpenv init -)"
 
+# direnvの設定
+eval "$(direnv hook zsh)"
+
 # Ctrl+w で､直前の / までを削除する
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -139,6 +142,7 @@ alias -g R='`git branch -a | peco --prompt "BRANCH>" | sed -e "s/^\*[ ]*//g"`'
 # .zshrc.mine があればそれも読み込む
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
+[ -f ~/.zshrc.zplug ] && source ~/.zshrc.zplug
 
 # --------------------------
 #  Tips
