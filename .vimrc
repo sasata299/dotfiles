@@ -12,10 +12,13 @@ Plug 'othree/yajs.vim'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
 
+" TypeScript
+"autocmd BufRead,BufNewFile *.ts set filetype=typescript
+
 " vimをsolarizedにする
 syntax enable
 set background=dark
-colorscheme solarized
+" colorscheme solarized
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
