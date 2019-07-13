@@ -1,4 +1,5 @@
 eval "$(rbenv init -)"
+eval "$(nodenv init -)"
 # eval "$(phpenv init -)"
 
 # direnvの設定
@@ -24,8 +25,7 @@ fi
 export MYSQL_PS1='\u \h:\p > '
 
 export LANG=ja_JP.UTF-8
-export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=~/.rbenv/shims:~/.nodenv/shims:/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 export DISPLAY=:0.0
 export EDITOR=vim
 export GREP_OPTIONS='--color=auto'
