@@ -8,6 +8,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/neocomplcache'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
+Plug 'othree/yajs.vim'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " vimをsolarizedにする
@@ -91,6 +93,9 @@ au BufNewFile,BufRead *.jbuilder set filetype=ruby
 " CoffeeScript
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+
+" json
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 let g:indent_guides_start_level=2
 let g:indent_guides_auto_colors=0
