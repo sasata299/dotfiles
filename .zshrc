@@ -164,3 +164,5 @@ alias -g R='`git branch -a | peco --prompt "BRANCH>" | sed -e "s/^\*[ ]*//g"`'
 # rm **/*.swp で *.swp ファイルを再帰的に削除できる
 # rm a* で Tab を押すと、a1 a2 a3 などに展開される
 # repeat n echo hoge で echo hoge を n 回繰り返す
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
