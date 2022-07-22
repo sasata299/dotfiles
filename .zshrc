@@ -1,5 +1,5 @@
 eval "$(rbenv init -)"
-eval "$(nodenv init -)"
+# eval "$(nodenv init -)"
 # eval "$(phpenv init -)"
 
 # direnvの設定
@@ -73,12 +73,22 @@ setopt extendedglob
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_save_no_dups
 setopt share_history
 setopt hist_ignore_space
-setopt hist_ignore_all_dups
 setopt hist_no_store
 setopt hist_reduce_blanks
 function history-all { history -E 1 }
+
+function select-history-incremental() {
+  BUFFER=$(history -n -r 1 | fzf --exact --reverse --query="$LBUFFER" --prompt="History > ")
+  CURSOR=${#BUFFER}
+}
+zle -N select-history-incremental
+bindkey '^r' select-history-incremental
 
 # 補完機能
 autoload -U compinit
