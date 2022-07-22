@@ -3,9 +3,7 @@ source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-completions" # 多くのコマンドに対応する入力補完
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # fishシェル風のシンタクスハイライト
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf # あいまい検索ができるコマンド
-zplug "junegunn/fzf", use:shell/key-bindings.zsh # Ctrl-Rで履歴検索、Ctrl-Tでファイル名検索補完できる
-zplug "paulirish/git-open", as:plugin # GitHub, GitLab, BitBucketを開けるようにするコマンド
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf # fzfのインストール
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

@@ -83,12 +83,12 @@ setopt hist_no_store
 setopt hist_reduce_blanks
 function history-all { history -E 1 }
 
-function select-history-incremental() {
+function select-history() {
   BUFFER=$(history -n -r 1 | fzf --exact --reverse --query="$LBUFFER" --prompt="History > ")
   CURSOR=${#BUFFER}
 }
-zle -N select-history-incremental
-bindkey '^r' select-history-incremental
+zle -N select-history
+bindkey '^r' select-history
 
 # 補完機能
 autoload -U compinit
