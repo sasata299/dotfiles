@@ -1,5 +1,4 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
-[ -f "$ZPLUG_HOME/init.zsh" ] || brew install zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-completions" # 多くのコマンドに対応する入力補完
