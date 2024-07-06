@@ -1,0 +1,23 @@
+name: Generate UUID and Print with Timestamp
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_uuid:
+    runs-on: ubuntu-latest
+    outputs:
+      uuid: ${{ steps.generate_uuid.outputs.uuid }}
+    steps:
+      - id: generate_uuid
+        run: echo "uuid=$(uuidgen)" >> $GITHUB_OUTPUT
+      - id: print_uuid
+        run: echo ${{ steps.generate_uuid.outputs.uuid }}
+
+  print_uuid_with_timestamp:
+    needs: generate_uuid
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print UUID with Timestamp
+        run: |
+          echo "$(date) : ${{ needs.generate_uuid.outputs.uuid }}"
